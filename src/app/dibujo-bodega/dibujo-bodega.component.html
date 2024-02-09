@@ -1,0 +1,106 @@
+<div class="contenedor" >
+  <div *ngFor="let torre of bodega.slice(); let i = index" class="torres">
+    @if (torre.rotation){
+    <div
+      class="draggable torre-columnas rotar-90"
+      [style.left.px]="torre.position.x"
+      [style.top.px]="torre.position.y"
+      [style.width.px]="torre.columnas * 50"
+      id="{{ i }}"
+      cdkDrag
+      (cdkDragEnded)="onDragEnded($event)"   
+    >
+      <div *ngFor="let columna of generarColumnas(torre.columnas)">
+        <div
+        [style.transform]="'rotate(' + torre.rotation + 'deg)'"
+        >
+        <img class="cuadro-image-horizontal" src="assets/torre.png" alt="Cubo" /></div>
+      </div>
+      <img
+        src="../../assets/rotate.png"
+        alt="rotar"
+        class="boton-rotar"
+        (click)="rotateTower(i)"
+      />
+
+      <img
+        src="../../assets/eliminar.png"
+        alt="rotar"
+        class="boton-rotar"
+        (click)="remoteTorre(i)"
+    
+      />
+
+      <div class="texto-contenedor">
+        <label class="rotar-texto">A</label> <!-- Texto a rotar -->
+      </div>
+    </div>
+    } @if (!torre.rotation){
+
+    <div
+      class="draggable torre-columnas rotar90"
+      [style.left.px]="torre.position.y"
+      [style.top.px]="torre.position.x"
+      [style.width.px]="torre.columnas * 50"
+      id="{{ i }}"
+      cdkDrag
+      (cdkDragEnded)="onDragEnded($event)"
+      
+    >
+      <div *ngFor="let columna of generarColumnas(torre.columnas)">
+        <div
+          class="cuadro"
+          [style.transform]="'rotate(' + torre.rotation + 'deg)'"
+        >
+      
+        <img class="cuadro-image" src="assets/torre.png" alt="Cubo" /></div>
+      </div>
+      <img
+        src="../../assets/rotate.png"
+        alt="rotar"
+        class="boton-rotar"
+        (click)="rotateTower(i)"
+      />
+
+      <img
+        src="../../assets/eliminar.png"
+        alt="rotar"
+        class="boton-rotar"
+        (click)="remoteTorre(i)"
+ 
+      />
+
+
+      <div class="texto-contenedor-horizontal">
+        <label>A</label>
+        <!-- Aquí está el texto que quieres centrar -->
+      </div>
+    </div>
+    }
+  </div>
+</div>
+
+
+<div class="container2"  >
+  <dx-data-grid
+
+  #grid
+  id="gridContainer"
+      [dataSource]="torres"
+      [showBorders]="true"
+      [columnAutoWidth]="true"
+      [hoverStateEnabled]="true"
+      [showBorders]="true"
+      [selectedRowKeys]="[]"
+      (onRowDblClick)="mostrarTorres($event.data)"
+  >
+  <dxo-sorting mode="none"></dxo-sorting>
+  <dxo-selection mode="single"></dxo-selection>
+
+      <dxi-column dataField="torres" caption="Torre"></dxi-column>
+      <dxi-column dataField="columnas" caption="Columnas"></dxi-column>
+      <dxi-column dataField="anaqueles" caption="Anaqueles"></dxi-column>
+
+  </dx-data-grid>
+  
+</div>

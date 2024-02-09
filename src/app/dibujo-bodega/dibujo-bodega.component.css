@@ -1,0 +1,85 @@
+.contenedor {
+  position: relative;
+  width: 900px;
+  height: 900px; 
+
+}
+
+.draggable {
+  position: absolute;
+  width: 0px;
+  height: 50px; 
+}
+
+.boton-rotar {
+  background: none;
+  height: 20px;
+  width: 20px;
+  cursor: pointer;
+
+}
+
+.boton-rotar-horizontal {
+  background: none;
+  height: 30px;
+  width: 30px;
+  cursor: pointer;
+  margin-left: 10px;
+  margin-bottom: 20px;
+}
+
+.cuadro {
+  height: 50px; /* Altura del cuadro */
+  display: flex;
+}
+
+.cuadro-image-horizontal{
+  margin: 0px;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+}
+
+.torre-columnas {
+  display: flex; /* Hace que los elementos dentro de la torre se muestren en línea */
+  flex-direction: row; /* Asegura que los elementos dentro de la torre se alineen horizontalmente */
+}
+
+.contenedor-imagen {
+  position: relative;
+}
+
+.rotar-90 {
+  flex-direction: column;
+}
+
+.rotar90 {
+  flex-direction: row;
+}
+
+.texto-contenedor{
+  position: absolute;
+
+}
+.texto-contenedor-horizontal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+}
+
+.container2 {
+  align-items: center;
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 180px; /* Ajusta el ancho según sea necesario */
+  height: 100%; /* Opcional: ajusta la altura según sea necesario */
+  background-color: #fff; /* Color de fondo del sidebar */
+  border-left: 1px solid #ccc; /* Borde izquierdo */
+  z-index: 2; /* Asegura que el sidebar esté encima del otro contenido */
+}
+
+
+
+

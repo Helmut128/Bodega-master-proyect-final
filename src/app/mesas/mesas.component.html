@@ -1,0 +1,60 @@
+<div class="dropdown">
+    <h2>Menú Seleccionable</h2>
+    <select class="select" (change)="seleccionarOpcion($event)">
+        <option >Seleccione</option>
+        <option value="1">Tipo 1</option>
+        <option value="2">Tipo 2</option>
+        <option value="3">Tipo 3</option>
+    </select> 
+
+    <div class="contenido" *ngIf="opcionSeleccionada === '1'">
+        <div class="contenedor">
+            <div *ngFor="let torre of torres; let i = index" class="torres">
+                <div
+                  class="draggable  torre-columnas"
+                  [style.left.px]="torre.position.x"
+                  [style.top.px]="torre.position.y"
+                  [style.width.px]="torre.columnas * 50"
+                  id="{{ i }}"
+                >
+                    <span class="text">Torre A </span>
+                    <div class="contenedor-imagen" *ngFor="let columna of generarColumnas(torre.columnas) ">
+                        <div ></div>
+                        <img class="cuadro-image-horizontal" src="assets/torre.png" alt="Cubo" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="contenido" *ngIf="opcionSeleccionada === '2'">
+        <div class="contenedor">
+
+            <div class="configuracion">
+                <h2>Añadir tamaño de mesas</h2>
+                <label for="alto">Alto (en unidades):</label>
+                <input type="number" id="alto" [(ngModel)]="alto" (input)="actualizarDimensiones()">
+                <label for="ancho">Ancho (en unidades):</label>
+                <input type="number" id="ancho" [(ngModel)]="ancho" (input)="actualizarDimensiones()">
+              
+                <div class="contenedorOpcion2" [style.width.px]="ancho * 5" [style.height.px]="alto * 5">
+                
+                </div>
+              </div>
+              
+        </div>
+    </div>
+
+    <div class="contenido" *ngIf="opcionSeleccionada === '3'">
+        <div class="palets-container">
+            <h1>Configuración del Palet</h1>
+              <label for="largoPalet">largoPalet:</label>
+              <input type="number" id="largoPalet" [(ngModel)]="largoPalet" (input)="actualizarAlto()">
+        
+              <label for="anchoPalet">Ancho:</label>
+              <input type="number" id="anchoPalet" [(ngModel)]="anchoPalet" (input)="actualizarAncho()">
+          
+            <div class="contenedorPalets" [style.width.px]="anchoPalet * 5" [style.height.px]="largoPalet * 5"></div>
+          </div>
+    </div>
+</div>

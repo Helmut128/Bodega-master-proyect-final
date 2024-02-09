@@ -1,0 +1,44 @@
+<!-- <div class="dropdown">
+    <h2>Menú Seleccionable</h2>
+    <form (ngSubmit)="agregarMesa(codigo, ancho, largo)">
+      <label for="codigo">Código de Mesa:</label>
+      <input type="text" id="codigo" [(ngModel)]="codigo" required>
+      <label for="ancho">Ancho (en unidades):</label>
+      <input type="number" id="ancho" [(ngModel)]="ancho" required>
+      <label for="largo">Largo (en unidades):</label>
+      <input type="number" id="largo" [(ngModel)]="largo" required>
+      <button type="submit">Agregar Mesa</button>
+    </form>
+  
+    <div *ngFor="let mesa of mesas" class="mesa">
+      <div class="contenedor-imagen" [style.width.px]="mesa.ancho * 5" [style.height.px]="mesa.largo * 5">
+        <img class="cuadro-image-horizontal" src="assets/mesa.png" alt="Mesa" />
+      </div>
+      <span>{{ mesa.mesa }}</span>
+    </div>
+  </div>
+   -->
+
+   <div class="configuracion">
+    <h2>Tamaño de mesas</h2>
+    <label for="alto">Alto (en unidades):</label>
+    <input type="number" id="alto" [(ngModel)]="largo" (input)="actualizarDimensiones()">
+    <label for="ancho">Ancho (en unidades):</label>
+    <input type="number" id="ancho" [(ngModel)]="ancho" (input)="actualizarDimensiones()">
+  
+    <div class="contenedor" [style.width.px]="ancho * 5" [style.height.px]="largo * 5">
+    
+    </div>
+  </div>
+
+  <div class="palets-container">
+    <h2>Configuración del Palet</h2>
+      <label for="largoPalet">largoPalet:</label>
+      <input type="number" id="largoPalet" [(ngModel)]="largoPalet" (input)="actualizarAlto()">
+
+      <label for="anchoPalet">Ancho:</label>
+      <input type="number" id="anchoPalet" [(ngModel)]="anchoPalet" (input)="actualizarAncho()">
+  
+    <div class="contenedorPalets" [style.width.px]="anchoPalet * 5" [style.height.px]="largoPalet * 5"></div>
+  </div>
+  

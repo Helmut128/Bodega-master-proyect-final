@@ -1,0 +1,19 @@
+<div class="contenedor">
+    <div *ngFor="let torre of torres; let i = index" class="torres">
+      <div
+        class="draggable  torre-columnas"
+        [style.left.px]="torre.position.x"
+        [style.top.px]="torre.position.y"
+        [style.width.px]="torre.columnas * 50"
+        id="{{ i }}"
+
+      >
+      <span class="text">Torre A </span>
+      <div class="contenedor-imagen" *ngFor="let columna of generarColumnas(torre.columnas) ">
+            <div ></div>
+            <img class="cuadro-image-horizontal" src="assets/torre.png" alt="Cubo" />
+        </div>
+      </div>
+     
+    </div>
+  </div>

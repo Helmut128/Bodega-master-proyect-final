@@ -119,56 +119,6 @@ input::-webkit-inner-spin-button {
   flex-direction: row; /* Asegura que los elementos dentro de la torre se alineen horizontalmente */
 }
 
-.configuracion {
-  width: 300px;
-  margin: 20px auto;
-  display: flex;
-  flex-direction: column;
-  align-items: center; /* Centra horizontalmente en el eje X */
-}
-
-.input-container {
-  width: 100%;
-  display: flex;
-  justify-content: flex-start; /* Alinea los elementos a la izquierda */
-  margin-bottom: 10px;
-}
-
-h2 {
-  font-size: 18px;
-  margin-bottom: 10px;
-}
-
-label {
-  margin-right: 10px;
-}
-
-input[type="number"] {
-  width: 100px;
-  padding: 8px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-}
-
-.contenedorOpcion2 {
-  width: 100%;
-  height: 100px;
-  background-image: url('../../assets/mesa.png'); /* Ruta de tu imagen de mesa */
-  background-repeat: repeat; /* Repetir la imagen */
-  background-size: contain; /* Mostrar la imagen completa */
-  background-position: center; /* Centrar la imagen */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  margin-top: 10px;
-}
-
-input::-webkit-inner-spin-button {
-  opacity: 1;
-}
-
 
 /*MESA PALET OPCION 3 */
 .palets-container {

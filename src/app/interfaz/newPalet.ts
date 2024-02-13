@@ -1,6 +1,9 @@
 export interface Palets {
-    palet: string;
+    palet: any;
     anchoPalet: any;
-    altoPalet: string;
+    altoPalet: any;
+    position?: { x: number; y: number };
+    rotation?: boolean 
+    location?: { x: number; y: number };
  
 }

@@ -1,19 +1,49 @@
-<div class="contenedor">
-    <div *ngFor="let torre of torres; let i = index" class="torres">
-      <div
-        class="draggable  torre-columnas"
-        [style.left.px]="torre.position.x"
-        [style.top.px]="torre.position.y"
-        [style.width.px]="torre.columnas * 50"
-        id="{{ i }}"
 
-      >
-      <span class="text">Torre A </span>
-      <div class="contenedor-imagen" *ngFor="let columna of generarColumnas(torre.columnas) ">
-            <div ></div>
-            <img class="cuadro-image-horizontal" src="assets/torre.png" alt="Cubo" />
-        </div>
+  <!-- Renderización de torres -->
+  <div *ngFor="let torre of torres; let i = index">
+    <div
+      class="draggable torre-columnas"
+      [style.left.px]="torre.position.x"
+      [style.top.px]="torre.position.y"
+      [style.width.px]="torre.columnas * 50"
+      id="{{ i }}"
+    >
+      <span class="text">Torre {{ i + 1 }} </span>
+      <div class="contenedor-imagen" *ngFor="let columna of generarColumnas(torre.columnas)">
+        <img class="cuadro-image-horizontal" src="assets/torre.png" alt="Cubo" />
       </div>
-     
     </div>
   </div>
+
+  <!-- Renderización de mesas -->
+  <div *ngFor="let mesa of mesas; let i = index">
+    <div class="draggable mesa-columnas"
+    [style.left.px]="mesa.position?.y"
+    [style.top.px]="mesa.position?.x"
+    [style.width.px]="mesa.mesas * 50"
+  
+    id="{{ i }}">
+    <span>Mesas {{ i + 1 }}</span>
+      <div class="contenedor-imagen" *ngFor="let m of generarMesas(mesa.mesas)">
+        <img class="cuadro-image-vertical" src="../../assets/mesa.jpg" alt="Mesa" />
+      </div>
+    </div>
+  </div>
+
+<!-- Contenedor externo para el grupo de palets -->
+<div class="contenedor-palets-grupo">
+  <!-- Renderización de palets -->
+  <div *ngFor="let palet of palet; let i = index">
+  
+    <div class="draggable paltes-columnas" 
+    [style.left.px]="palet.position?.x"
+    [style.top.px]="palet.position?.y "
+  
+    id="{{ i }}">
+    <span>Palets {{ i + 1 }}</span>
+      <div class="contenedor-palets" *ngFor="let m of generarPalets(palet.palet)">
+        <img class="imagen-palet" src="../../assets/palet.jpg" alt="palet" />
+      </div>
+    </div>
+  </div>
+</div>

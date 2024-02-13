@@ -7,54 +7,134 @@
         <option value="3">Tipo 3</option>
     </select> 
 
-    <div class="contenido" *ngIf="opcionSeleccionada === '1'">
-        <div class="contenedor">
-            <div *ngFor="let torre of torres; let i = index" class="torres">
-                <div
-                  class="draggable  torre-columnas"
-                  [style.left.px]="torre.position.x"
-                  [style.top.px]="torre.position.y"
-                  [style.width.px]="torre.columnas * 50"
-                  id="{{ i }}"
-                >
-                    <span class="text">Torre A </span>
-                    <div class="contenedor-imagen" *ngFor="let columna of generarColumnas(torre.columnas) ">
-                        <div ></div>
-                        <img class="cuadro-image-horizontal" src="assets/torre.png" alt="Cubo" />
-                    </div>
-                </div>
+<div class="center-container" *ngIf="opcionSeleccionada === '1'">
+    @if (cajaColumna.length > 0 && newTorre ) {
+    <div>
+      <div *ngFor="let fila of cajaAnaquel.slice().reverse()">
+        <div class="flex-container">
+          <div *ngFor="let elemento of cajaColumna">
+            <div class="torres-style">
+              <img class="torres-style" src="assets/torre.png" alt="Cubo" />
+              <label class="position-label">
+                {{ +elemento + 1 }} - {{ +fila + 1 }}</label
+              >
             </div>
+          </div>
         </div>
+      </div>
     </div>
-
-    <div class="contenido" *ngIf="opcionSeleccionada === '2'">
-        <div class="contenedor">
-
-            <div class="configuracion">
-                <h2>Añadir tamaño de mesas</h2>
-                <label for="alto">Alto (en unidades):</label>
-                <input type="number" id="alto" [(ngModel)]="alto" (input)="actualizarDimensiones()">
-                <label for="ancho">Ancho (en unidades):</label>
-                <input type="number" id="ancho" [(ngModel)]="ancho" (input)="actualizarDimensiones()">
-              
-                <div class="contenedorOpcion2" [style.width.px]="ancho * 5" [style.height.px]="alto * 5">
-                
+    }
+    <div class="fixed-container">
+      <div class="container">
+        <input
+          class="box"
+          type="number"
+          [(ngModel)]="newTorre"
+          (ngModelChange)="onTorreChange($event)"
+        />
+        <input
+          class="box"
+          type="number"
+          [(ngModel)]="newColumn"
+          (ngModelChange)="llenarCaja(newColumn, newAnaquel)"
+        />
+        <input
+          class="box"
+          type="number"
+          [(ngModel)]="newAnaquel"
+          (ngModelChange)="llenarCaja(newColumn, newAnaquel)"
+        />
+      </div>
+    </div>
+  </div>
+</div>
+ 
+<div class="center-container" *ngIf="opcionSeleccionada === '2'">
+    @if (cajaAncho.length > 0 && newTable ) {
+        <div>
+          <div *ngFor="let fila of cajaAlto.slice().reverse()">
+            <div class="flex-container">
+              <div *ngFor="let elemento of cajaAncho">
+                <div class="torres-style">
+                  <img class="torres-style" src="../../assets/mesa.jpg" alt="Cubo" />
+                  <label class="position-label">
+                    {{ +elemento + 1 }} - {{ +fila + 1 }}</label
+                  >
                 </div>
               </div>
-              
+            </div>
+          </div>
+        </div>
+        }
+    <div class="fixed-container">
+          
+            <div class="container">
+                <input
+                class="box"
+                type="number"
+                [(ngModel)]="newTable"
+                (ngModelChange)="onTableChange($event)"
+
+              />
+              <input
+                class="box"
+                type="number"
+                [(ngModel)]="newHeight"
+                (ngModelChange)="llenarDatosMesas(newHeight, newWidth)"
+
+              />
+              <input 
+                class="box"
+                type="number"
+                [(ngModel)]="newWidth"
+                (ngModelChange)="llenarDatosMesas(newWidth, newHeight)"
+
+              />
+            </div>  
+    </div>
+</div>
+    
+<div class="center-container" *ngIf="opcionSeleccionada === '3'">
+    @if (cajaAnchoPalet.length > 0 && newPalet ) {
+        <div>
+          <div *ngFor="let fila of cajaAlto.slice().reverse()">
+            <div class="flex-container">
+              <div *ngFor="let elemento of cajaAnchoPalet">
+                <div class="torres-style">
+                  <img class="torres-style" src="../../assets/palet.jpg" alt="Cubo" />
+                  <label class="position-label">
+                    {{ +elemento + 1 }} - {{ +fila + 1 }}</label
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        }
+        <div class="fixed-container">
+           
+            <div class="container">
+            <input
+            class="box"
+            type="number"
+            [(ngModel)]="newPalet"
+            (ngModelChange)="onPaletChange($event)"
+          />
+          <input
+            class="box"
+            type="number"
+            [(ngModel)]="newWidthPalet"
+            (ngModelChange)="llenarDatosPalets(newWidthPalet, newHeightPalet)"
+          />
+          <input 
+            class="box"
+            type="number"
+            [(ngModel)]="newHeightPalet"
+            (ngModelChange)="llenarDatosPalets(newHeightPalet, newWidthPalet)"
+          />
         </div>
     </div>
 
-    <div class="contenido" *ngIf="opcionSeleccionada === '3'">
-        <div class="palets-container">
-            <h1>Configuración del Palet</h1>
-              <label for="largoPalet">largoPalet:</label>
-              <input type="number" id="largoPalet" [(ngModel)]="largoPalet" (input)="actualizarAlto()">
-        
-              <label for="anchoPalet">Ancho:</label>
-              <input type="number" id="anchoPalet" [(ngModel)]="anchoPalet" (input)="actualizarAncho()">
-          
-            <div class="contenedorPalets" [style.width.px]="anchoPalet * 5" [style.height.px]="largoPalet * 5"></div>
-          </div>
-    </div>
 </div>
+
+

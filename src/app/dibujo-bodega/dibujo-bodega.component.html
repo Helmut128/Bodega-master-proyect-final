@@ -1,15 +1,14 @@
-<div class="contenedor" >
-  <div *ngFor="let torre of bodega.slice(); let i = index" class="torres">
+<div class="contenedor">
+  <div *ngFor="let torre of bodega.slice(); let i = index" >
     @if (torre.rotation){
     <div
       class="draggable torre-columnas rotar-90"
       [style.left.px]="torre.position.x"
       [style.top.px]="torre.position.y"
-      [style.width.px]="torre.columnas * 50"
       id="{{ i }}"
       cdkDrag
-      (cdkDragEnded)="onDragEnded($event)"   
-    >
+      (cdkDragEnded)="onDragEnded($event)">
+
       <div *ngFor="let columna of generarColumnas(torre.columnas)">
         <div
         [style.transform]="'rotate(' + torre.rotation + 'deg)'"
@@ -32,16 +31,15 @@
       />
 
       <div class="texto-contenedor">
-        <label class="rotar-texto">A</label> <!-- Texto a rotar -->
+        <span>Torre {{torre.torres}}</span> 
       </div>
     </div>
     } @if (!torre.rotation){
 
     <div
-      class="draggable torre-columnas rotar90"
-      [style.left.px]="torre.position.y"
-      [style.top.px]="torre.position.x"
-      [style.width.px]="torre.columnas * 50"
+      class="draggable torre-columnas "
+      [style.left.px]="torre.position.x"
+      [style.top.px]="torre.position.y"
       id="{{ i }}"
       cdkDrag
       (cdkDragEnded)="onDragEnded($event)"
@@ -49,7 +47,6 @@
     >
       <div *ngFor="let columna of generarColumnas(torre.columnas)">
         <div
-          class="cuadro"
           [style.transform]="'rotate(' + torre.rotation + 'deg)'"
         >
       
@@ -70,16 +67,14 @@
  
       />
 
-
       <div class="texto-contenedor-horizontal">
-        <label>A</label>
-        <!-- Aquí está el texto que quieres centrar -->
+      
+        <span>Torre {{torre.torres}}</span> 
       </div>
     </div>
     }
   </div>
 </div>
-
 
 <div class="container2"  >
   <dx-data-grid
@@ -104,3 +99,220 @@
   </dx-data-grid>
   
 </div>
+
+<div class="contenedorPalet" >
+
+  <div *ngFor="let palets of bodegaPalets.slice(); let i = index" >
+    @if (palets.rotation){
+    <div
+      class="draggable torre-columnas rotar-90"
+      [style.left.px]="palets.position?.x"
+      [style.top.px]="palets.position?.y"
+      
+      [style.width.px]="palets.anchoPalet * 50"
+
+      id="{{ i }}"
+      cdkDrag
+      (cdkDragEnded)="onDragEndedPalet($event)"   
+    >
+      <div *ngFor="let Palets of generarPalets(palets.anchoPalet)">
+        <div
+        [style.transform]="'rotate(' + palets.rotation + 'deg)'"
+        >
+        <img class="cuadro-image-horizontal" src="assets/palet.jpg" alt="Palet" /></div>
+      </div>
+      <img
+        src="../../assets/rotate.png"
+        alt="rotar"
+        class="boton-rotar"
+        (click)="rotateTowerPalet(i)"
+      />
+
+      <img
+        src="../../assets/eliminar.png"
+        alt="rotar"
+        class="boton-rotar"
+        (click)="remotePalet(i)"
+    
+      />
+
+      <div class="texto-contenedor-vertical-palet">
+
+        <span>Palet {{ palets.palet }}</span>
+      </div>
+   
+    </div>
+    } @if (!palets.rotation){
+
+    <div
+      class="draggable torre-columnas rotar90"
+      [style.left.px]="palets.position?.x"
+      [style.top.px]="palets.position?.y"
+      [style.width.px]="palets.altoPalet * 50"
+      id="{{ i }}"
+      cdkDrag
+      (cdkDragEnded)="onDragEnded($event)"
+      
+    >
+      <div *ngFor="let Palet of generarPalets(palets.altoPalet)">
+        <div
+          class="cuadro"
+          [style.transform]="'rotate(' + palets.rotation + 'deg)'"
+        >
+        <img class="cuadro-image" src="assets/palet.jpg" alt="Palet" /></div>
+      </div>
+      <img
+        src="../../assets/rotate.png"
+        alt="rotar"
+        class="boton-rotar"
+        (click)="rotateTowerPalet(i)"
+      />
+
+      <img
+        src="../../assets/eliminar.png"
+        alt="rotar"
+        class="boton-rotar"
+        (click)="remotePalet(i)"
+ 
+      />
+
+      <div class="texto-contenedor-horizontal-palet">
+        <span>Palet {{ palets.palet }}</span>
+      </div>
+    </div>
+    }
+  </div>
+
+  <div class="container3"  >
+    <dx-data-grid
+  
+    #grid
+    id="gridContainerPalet"
+        [dataSource]="palets"
+        [showBorders]="true"
+        [columnAutoWidth]="true"
+        [hoverStateEnabled]="true"
+        [showBorders]="true"
+        [selectedRowKeys]="[]"
+        (onRowDblClick)="mostrarPalets($event.data)"
+        
+    >
+    <dxo-sorting mode="none"></dxo-sorting>
+    <dxo-selection mode="single"></dxo-selection>
+  
+        <dxi-column dataField="palet"  caption="Palets"></dxi-column>
+        <dxi-column dataField="anchoPalet" caption="Ancho"></dxi-column>
+        <dxi-column dataField="altoPalet" caption="Alto"></dxi-column>
+  
+    </dx-data-grid>
+    
+  </div>
+</div>
+
+
+<div class="contenedorMesas" >
+
+  <div *ngFor="let Mesas of bodegaMesas.slice(); let i = index" class="mesas">
+    @if (Mesas.rotation){
+    <div
+    
+      class="draggable torre-columnas rotar-90"
+      [style.left.px]="Mesas.position?.x"
+      [style.top.px]="Mesas.position?.y"
+      id="{{ i }}"
+      cdkDrag
+      (cdkDragEnded)="onDragEndedMesas ($event)"   
+    >
+      <div *ngFor="let mesas of generarMesas(Mesas.ancho)">
+        <div
+        [style.transform]="'rotate(' + Mesas.rotation + 'deg)'"
+        >
+        <img class="cuadro-image-horizontal" src="../../assets/mesa.jpg" alt="Mesa" /></div>
+      </div>
+      <img
+        src="../../assets/rotate.png"
+        alt="rotar"
+        class="boton-rotar"
+        (click)="rotateTowerMesas(i)"
+      />
+
+      <img
+        src="../../assets/eliminar.png"
+        alt="rotar"
+        class="boton-rotar"
+        (click)="remoteMesas(i)"
+    
+      />
+
+      <div class="texto-contenedor">
+        <label class="rotar-texto"> Mesa {{ i + 1 }}</label> <!-- Texto a rotar -->
+      </div>
+    </div>
+    } @if (!Mesas.rotation){
+
+    <div
+      class="draggable torre-columnas rotar90"
+      [style.left.px]="Mesas.position?.x"
+      [style.top.px]="Mesas.position?.y"
+      
+      id="{{ i }}"
+      cdkDrag
+      (cdkDragEnded)="onDragEndedMesas($event)"
+      
+    >
+      <div *ngFor="let mesa of generarMesas(Mesas.alto)">
+        <div
+          class="cuadro"
+          [style.transform]="'rotate(' + Mesas.rotation + 'deg)'"
+        >
+        <img class="cuadro-image" src="../../assets/mesa.jpg" alt="Mesa" /></div>
+      </div>
+      <img
+        src="../../assets/rotate.png"
+        alt="rotar"
+        class="boton-rotar"
+        (click)="rotateTowerMesas(i)"
+      />
+
+      <img
+        src="../../assets/eliminar.png"
+        alt="rotar"
+        class="boton-rotar"
+        (click)="remoteMesas(i)"
+ 
+      />
+
+      <div class="texto-contenedor-horizontal">
+      
+        <span>Mesa {{ i + 1 }}</span>
+      </div>
+    </div>
+    }
+  </div>
+
+
+<div class="container4"  >
+  <dx-data-grid
+
+  #grid
+  id="gridContainerPalet"
+      [dataSource]="mesas"
+      [showBorders]="true"
+      [columnAutoWidth]="true"
+      [hoverStateEnabled]="true"
+      [showBorders]="true"
+      [selectedRowKeys]="[]"
+      (onRowDblClick)="mostrarMesas($event.data)"
+  >
+  <dxo-sorting mode="none"></dxo-sorting>
+  <dxo-selection mode="single"></dxo-selection>
+
+      <dxi-column dataField="mesas"  caption="Mesa"></dxi-column>
+      <dxi-column dataField="alto" caption="Ancho"></dxi-column>
+      <dxi-column dataField="ancho" caption="Alto"></dxi-column>
+
+  </dx-data-grid>
+  
+</div>
+
+

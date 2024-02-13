@@ -1,128 +1,120 @@
+.container {
+  display: flex;
+  flex-direction: row; /* Cambiar de columna a fila */
+  align-items: flex-end; /* Alinear los elementos en la parte inferior */
+  justify-content: center;
+  height: 80vh; /* Esto es opcional, ajusta la altura según tu diseño */
+}
 
-  .select{
-    display: flex;
-    height: 30px;
-    margin: 10px;
-  }
+.box {
+  width: 100px; /* Ancho deseado de las cajas */
+  height: 50px; /* Altura deseada de las cajas */
+  background-color: lightblue; /* Color de fondo de las cajas, puedes ajustarlo según tu preferencia */
+  margin: 10px; /* Margen entre las cajas, puedes ajustarlo según tu preferencia */
+  text-align: center;
+  font-size: 30px;
+}
+
+.calculate-btn {
+  width: 100px; /* Mismo ancho que las cajas */
+  height: 50px; /* Mismo alto que las cajas */
+  padding: 8px 16px;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin: 10px; /* Mismo margen que las cajas */
+}
+
+.calculate-btn:hover {
+  background-color: #45a049;
+}
+
+.fixed-container {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.flex-container {
+  display: flex;
+  gap: 0;
+  margin: -7px;
+  padding: 0px;
+}
+.center-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 80vh; /* Ajusta la altura según tu diseño */
+}
+
+.return-btn {
+  width: 200px; /* Ancho deseado del botón */
+  height: 50px; /* Alto deseado del botón */
+  background-color: #f44336; /* Color de fondo del botón */
+  color: white; /* Color del texto del botón */
+  border: none; /* Eliminar borde del botón */
+  border-radius: 4px; /* Borde redondeado del botón */
+  cursor: pointer; /* Cambiar cursor al pasar sobre el botón */
+  margin-top: 10px; /* Espacio superior del botón */
+}
+
+.return-btn:hover {
+  background-color: #d32f2f; /* Color de fondo del botón al pasar sobre él */
+}
+.side-container {
+  display: flex;
+  flex-direction: row; /* Cambiar a fila para mostrar los elementos en horizontal */
+  align-items: center; /* Alinear los elementos en el centro horizontalmente */
+  justify-content: flex-start; /* Alinear los elementos en la parte superior */
+  margin-left: 20px; /* Margen izquierdo para separarlo del centro */
+}
+
+input::-webkit-inner-spin-button {
+  opacity: 1;
+  width: 50px;
+  height: 50px;
+}
+
+.torres-style {
+  display: flex;
+  height: 100%;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+}
+
+.position-label {
+  position: absolute;
+}
+
+.select{
+  display: flex;
+  height: 30px;
+  margin: 10px;
+}
 
 .contenedor {
-    width: 50%;
-    margin: auto;
+  width: 50%;
+  margin: auto;
 }
-  .draggable {
-    position: absolute;
-    width: 50px; /* Ajusta el ancho según sea necesario */
-    height: 50px; /* Ajusta la altura según sea necesario */
-  }
-  .cuadro-image-horizontal{
-    margin: 0px;
-    width: 50px;
-    height: 50px;
-    display: flex;
-    justify-content: center;
-  }
-  
-  .torre-columnas {
-    display: flex; /* Hace que los elementos dentro de la torre se muestren en línea */
-    flex-direction: row; /* Asegura que los elementos dentro de la torre se alineen horizontalmente */
-  }
-  
-  .configuracion {
-    width: 300px;
-    margin: 20px auto;
-    display: flex;
-    flex-direction: column;
-    align-items: center; /* Centra horizontalmente en el eje X */
-  }
-  
-  .input-container {
-    width: 100%;
-    display: flex;
-    justify-content: flex-start; /* Alinea los elementos a la izquierda */
-    margin-bottom: 10px;
-  }
-  
-  h2 {
-    font-size: 18px;
-    margin-bottom: 10px;
-  }
-  
-  label {
-    margin-right: 10px;
-  }
-  
-  input[type="number"] {
-    width: 100px;
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-  }
-  
-  .contenedorOpcion2 {
-    width: 100%;
-    height: 100px;
-    background-image: url('../../assets/mesa.png'); /* Ruta de tu imagen de mesa */
-    background-repeat: repeat;
-    background-size: contain;
-    background-position: center;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    margin-top: 10px;
-  }
-  
-  input::-webkit-inner-spin-button {
-    opacity: 1;
-  }
+.draggable {
+  position: absolute;
+  width: 50px; /* Ajusta el ancho según sea necesario */
+  height: 50px; /* Ajusta la altura según sea necesario */
+}
+.cuadro-image-horizontal{
+  margin: 0px;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+}
 
-
-  /*MESA PALET OPCION 3 */
-  .palets-container {
-    width: 300px;
-    margin: 20px auto;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  
-  .input-container {
-    width: 100%;
-    display: flex;
-    justify-content: flex-start;
-    margin-bottom: 10px;
-  }
-  
-  h2 {
-    font-size: 18px;
-    margin-bottom: 10px;
-  }
-  
-  label {
-    margin-right: 10px;
-  }
-  
-  input[type="number"] {
-    width: 100px;
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-  }
-  
-  .contenedorPalets {
-    width: 100%;
-    height: 100px;
-    background-image: url('../../assets/palet.jpg'); /* Ruta de tu imagen de mesa */
-    background-repeat: repeat;
-    background-size: contain;
-    background-position: center;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    margin-top: 10px;
- 
-  }
-
+.torre-columnas {
+  display: flex; /* Hace que los elementos dentro de la torre se muestren en línea */
+  flex-direction: row; /* Asegura que los elementos dentro de la torre se alineen horizontalmente */
+}

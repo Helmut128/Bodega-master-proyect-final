@@ -91,8 +91,9 @@
   .contenedor {
     width: 100%;
     height: 100px;
-    background-image: url('../../assets/mesa.png'); /* Ruta de tu imagen de mesa */
-    background-size: cover;
+    background-image: url('../../assets/mesa.jpg'); /* Ruta de tu imagen de mesa */
+    background-repeat: repeat;
+    background-size: contain;
     background-position: center;
     display: flex;
     justify-content: center;

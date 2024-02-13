@@ -1,6 +1,6 @@
 .draggable {
     position: absolute;
-    width: 50px; /* Ajusta el ancho según sea necesario */
+    width: 100px; /* Ajusta el ancho según sea necesario */
     height: 50px; /* Ajusta la altura según sea necesario */
   }
   .cuadro-image-horizontal{
@@ -14,5 +14,37 @@
   .torre-columnas {
     display: flex; /* Hace que los elementos dentro de la torre se muestren en línea */
     flex-direction: row; /* Asegura que los elementos dentro de la torre se alineen horizontalmente */
+  }
+
+  
+  .mesas span {
+    margin: 5px; /* Espaciado interno para el texto */
+    
+  }
+
+  .paltes-columnas {
+    /* Estilos específicos para los contenedores de palets */
+    display: flex; /* Utilizamos flexbox para centrar los palets */
+    align-items: center; /* Centra verticalmente los palets */
+  }
+  
+  .contenedor-palets {
+    /* Estilos para el contenedor de los palets */
+    display: inline-block; /* Para que los palets se muestren en línea */
+    margin-right: 10px; /* Espacio entre los palets */
+  }
+  
+  .imagen-palet {
+    width: 50px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+  }
+
+  .cuadro-image-vertical{
+    width: 50px;
+    height: 50px;
+    display: block;
+    flex-direction: column;
   }
   

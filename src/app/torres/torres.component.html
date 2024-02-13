@@ -1,0 +1,28 @@
+<div cdkDropList cdkDropListOrientation="horizontal" class="example-list" (cdkDropListDropped)="drop($event)">
+    @for (mesas of mesas; track mesas) {
+      <div class="example-box" cdkDrag> Numero de mesas: {{mesas.mesas}} <br> Alto: {{mesas.alto}} <br> Ancho: {{mesas.ancho}}  
+        <img class="cuadro-image" src="assets/palet.jpg" alt="Palet" />
+    </div>
+    }
+  </div>
+    
+  <dx-data-grid
+
+  #grid
+  id="gridContainerPalet"
+      [dataSource]="mesas"
+      [showBorders]="true"
+      [columnAutoWidth]="true"
+      [selectedRowKeys]="[]"
+      (onRowDblClick)="mostrarMesas($event.data)"
+  >
+  <dxo-sorting mode="none"></dxo-sorting>
+  <dxo-selection mode="single"></dxo-selection>
+
+      <dxi-column dataField="mesas"  caption="Mesa"></dxi-column>
+      <dxi-column dataField="alto" caption="Ancho"></dxi-column>
+      <dxi-column dataField="ancho" caption="Alto"></dxi-column>
+
+  </dx-data-grid>
+  
+  

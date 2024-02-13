@@ -1,13 +1,10 @@
 .contenedor {
   position: relative;
-  width: 900px;
-  height: 900px; 
-
 }
 
 .draggable {
   position: absolute;
-  width: 0px;
+  width: 70px;
   height: 50px; 
 }
 
@@ -29,33 +26,61 @@
 }
 
 .cuadro {
+  width: 50px; /* Ancho del cuadro */
   height: 50px; /* Altura del cuadro */
+  min-height: 50px;
+  min-width: 50px;
+  max-width: 50px;
+  max-height: 50px;
   display: flex;
 }
 
-.cuadro-image-horizontal{
-  margin: 0px;
+.cuadro-image{
   width: 50px;
   height: 50px;
+  min-height: 50px;
+  min-width: 50px;
+  max-width: 50px;
+  max-height: 50px;
+}
+
+
+.cuadro-image-horizontal{
+  margin: 0px;
+  width: 50px; /* Ancho del cuadro */
+  height: 50px; /* Altura del cuadro */
+  min-height: 50px;
+  min-width: 50px;
+  max-width: 50px;
+  max-height: 50px;
+
+  height: auto; /* Altura automática */
   display: flex;
   justify-content: center;
 }
 
 .torre-columnas {
   display: flex; /* Hace que los elementos dentro de la torre se muestren en línea */
-  flex-direction: row; /* Asegura que los elementos dentro de la torre se alineen horizontalmente */
+  justify-content: center;
+  align-items: center;
+  max-width: 250px; /* Ancho máximo de la torre */
+
 }
 
 .contenedor-imagen {
   position: relative;
+  height: 100%;
 }
 
 .rotar-90 {
   flex-direction: column;
+  min-width: 50px;
 }
 
 .rotar90 {
   flex-direction: row;
+  min-width: 50px;
+  
 }
 
 .texto-contenedor{
@@ -64,9 +89,19 @@
 }
 .texto-contenedor-horizontal {
   position: absolute;
-  top: 50%;
-  left: 50%;
+
 }
+
+.texto-contenedor-vertical-palet{
+  margin-top: 10px;
+}
+
+.texto-contenedor-horizontal-palet{
+  position: absolute;
+  margin-bottom: 80px;
+}
+
+
 
 .container2 {
   align-items: center;
@@ -80,6 +115,27 @@
   z-index: 2; /* Asegura que el sidebar esté encima del otro contenido */
 }
 
+.container3 {
+  align-items: center;
+  position: fixed;
+  top: 40%;
+  right: 0;
+  width: 180px; /* Ajusta el ancho según sea necesario */
+  height: 100%; /* Opcional: ajusta la altura según sea necesario */
+  background-color: #fff; /* Color de fondo del sidebar */
+  border-left: 1px solid #ccc; /* Borde izquierdo */
+  z-index: 3; /* Coloca el container3 debajo del container2 */
+}
 
-
+.container4 {
+  align-items: center;
+  position: fixed;
+  top: 80%;
+  right: 0;
+  width: 180px; /* Ajusta el ancho según sea necesario */
+  height: 100%; /* Opcional: ajusta la altura según sea necesario */
+  background-color: #fff; /* Color de fondo del sidebar */
+  border-left: 1px solid #ccc; /* Borde izquierdo */
+  z-index: 4; /* Coloca el container3 debajo del container2 */
+}
 

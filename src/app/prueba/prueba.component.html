@@ -17,19 +17,18 @@
       <span>{{ mesa.mesa }}</span>
     </div>
   </div>
-   -->
+-->
 
-   <div class="configuracion">
+<div class="configuracion">
     <h2>Tamaño de mesas</h2>
     <label for="alto">Alto (en unidades):</label>
     <input type="number" id="alto" [(ngModel)]="largo" (input)="actualizarDimensiones()">
     <label for="ancho">Ancho (en unidades):</label>
     <input type="number" id="ancho" [(ngModel)]="ancho" (input)="actualizarDimensiones()">
   
-    <div class="contenedor" [style.width.px]="ancho * 5" [style.height.px]="largo * 5">
-    
-    </div>
-  </div>
+    <div class="contenedor" [style.width.px]="ancho * 5" [style.height.px]="largo * 5"></div>
+</div>
+
 
   <div class="palets-container">
     <h2>Configuración del Palet</h2>

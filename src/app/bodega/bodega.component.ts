@@ -7,8 +7,7 @@ import {
 import { NgFor, NgClass, NgIf } from '@angular/common';
 import { FormsModule } from '@angular/forms'; 
 import { Torres } from '../interfaz/newTorres';
-import { Mesas } from '../interfaz/newMesas';
-import { Palets } from '../interfaz/newPalet';
+
 
 @Component({
   selector: 'app-bodega',
@@ -100,9 +99,10 @@ export class BodegaComponent {
     },
   ];
 
-  mesa: Mesas [] = [];
-
-  palet: Palets [] = [];
+  alto: number = 0;
+  ancho: number = 0;
+  anchoPalet: number = 0;
+  largoPalet: number = 0
 
   opcionSeleccionada: string | null = null;
   
@@ -114,38 +114,18 @@ export class BodegaComponent {
   newColumn = 1; // Variable para la nueva columna
   newAnaquel = 1; // Variable para el nuevo anaquel
 
-  //MESA 2 - VARIABLES
-  ancho: number = 0;
-  largo: number = 0;
-  alto: number = 0;
-  codigo: string = '';
+  actualizarDimensiones() { }
+  actualizarAlto() {}
 
-  cajaAncho: string [] = []; //Almacena info de la cajaAncho Mesa2
-  cajaAlto: string [] = [];
-  
-  newTable: string = '1'; //Variable nueva Mesa
-  newWidth = 1;
-  newHeight = 1;
-
-
-  //MESA 3 - VARIABLES
-  anchoPalet: number = 0;
-  largoPalet: number = 0;
-  altoPalet: number = 0;
-
-  cajaAnchoPalet: string [] = []; //Almacena info de la cajaAncho Mesa2
-  cajaAltoPalet: string [] = [];
-  
-  newPalet: string = '1'; //Variable nueva Mesa
-  newWidthPalet = 1;
-  newHeightPalet = 1;
-
+  actualizarAncho() {}
 
 //SELECCIONAR OPCIONES MENU
   seleccionarOpcion(event: any) {
     this.opcionSeleccionada = event.target.value;
     console.log(this.opcionSeleccionada)
 }
+
+
 //------------MESA 1 --------------------------------------------------------------------------------------------
   // Función para llenar los arreglos de columnas y anaqueles
   llenarCaja(columna: number, anaquel: number) {
@@ -253,223 +233,6 @@ export class BodegaComponent {
   ngOnInit(): void {
     this.mostrarDetallesTorre(); // Llama a la función para mostrar los detalles de la primera torre al iniciar el componente
     this.llenarCaja(this.newColumn, this.newAnaquel); // Llena la caja de columnas y anaqueles al iniciar el componente
-
-    //MESAS
-    this.mostrarDetallesMesas(); // Llama a la función para mostrar los detalles de la primera MESA al iniciar el componente
-    this.llenarDatosMesas(this.newWidth, this.newHeight); // Llena la Mesa de alto y ancho al iniciar el componente
-  
-    //PALETS
-    this.mostrarDetallesPalet();
-    this.llenarDatosPalets(this.newWidthPalet, this.newHeightPalet);
   }
 
-
-// -------------------------------------------------------------------------------------------------------------------------------------//
-  //MESA 2 - FUNCIONES
-
-    // Función para llenar los arreglos de alto y ancho --Listo 
-    llenarDatosMesas(ancho: number, alto: number) {
-      this.cajaAncho = []; // Vacía el arreglo de ancho
-      this.cajaAlto = []; // Vacía el arreglo de alto
-  
-      // Llena el arreglo de columnas con valores hasta el número de ancho especificado
-      for (let i = 0; i < ancho; i++) {
-        this.cajaAncho[i] = i.toString();
-      }
-  
-      // Llena el arreglo de anaqueles con valores hasta el número de alto  especificado
-      for (let j = 0; j < alto; j++) {
-        this.cajaAlto[j] = j.toString();
-      }
-  
-      this.agregarMesas(); // Llama a la función para agregar una torre
-    } //LISTO 
-
-    agregarMesas() { //LISTO
-      if (this.newWidth !== null) {
-        const nuevaMesa: Mesas = {
-          mesas: this.newTable.toString(),
-          ancho: this.newWidth.toString(),
-          alto: this.newHeight.toString(),
-      
-        };
-  
-        // Busca si ya existe una torre con el mismo nombre
-        const indiceMesaExistente = this.mesa.find(
-          (mesa) => mesa.mesas === this.newTable.toString()
-        );
-  
-        // Si la torre ya existe, actualiza la cantidad de columnas y anaqueles
-        if (indiceMesaExistente) {
-          indiceMesaExistente.ancho = this.newWidth.toString();
-          indiceMesaExistente.alto = this.newHeight.toString();
-        } else {
-          // Si la torre no existe, la agrega al arreglo
-          this.mesa.push(nuevaMesa);
-        }
-        console.log(this.mesa);
-      }
-    }
-
-    onWidthChange(event: any) { //LISTO 
-      const newWidthValue = parseInt(event); // Convertir el valor a número entero
-      console.log('Nuevo valor de ancho:', newWidthValue); // Mostrar el nuevo valor de la columna en la consola
-  
-      if (newWidthValue !== this.newWidth) {
-        // Verificar si el valor ha cambiado
-        this.newWidth = newWidthValue; // Actualizar el valor de la columna
-  
-        // Agregar una pequeña pausa antes de llamar a llenarCaja()
-        setTimeout(() => {
-          this.llenarDatosMesas(this.newWidth, this.newHeight); // Llamar a llenarCaja solo si el valor ha cambiado
-        });
-      }
-    }
-
-    onHeightChange(event: any) {  //LISTO 
-      const newHeightValue = parseInt(event); // Convertir el valor a número entero
-      console.log('Nuevo valor de anaquel:', newHeightValue); // Mostrar el nuevo valor del anaquel en la consola
-  
-      if (newHeightValue !== this.newHeight) {
-        // Verificar si el valor ha cambiado
-        this.newHeight = newHeightValue; // Actualizar el valor del anaquel
-  
-        // Agregar una pequeña pausa antes de llamar a llenarCaja()
-        setTimeout(() => {
-          this.llenarDatosMesas(this.newWidth, this.newHeight); // Llamar a llenarCaja solo si el valor ha cambiado
-        });
-      }
-    }
-
-      // Función para mostrar los detalles de la torre seleccionada
-  mostrarDetallesMesas() {
-    if (this.newTable) {
-      const mesa = this.mesa.find(
-        (mesa) => mesa.mesas === this.newTorre.toString()
-      );
-      if (mesa) {
-        // Si se encuentra la torre en el arreglo, actualiza los valores de columnas y anaqueles
-        this.newHeight = parseInt(mesa.alto);
-        this.newWidth = parseInt(mesa.ancho);
-      } else {
-        // Si no se encuentra la torre, se establecen valores predeterminados
-        this.newHeight = 1;
-        this.newWidth = 1;
-      }
-    }
-  }
-
-    // Función que se llama cuando cambia el valor de la torre seleccionada
-   onTableChange(event: any) {
-      this.newTable = event;
-      this.mostrarDetallesMesas(); // Llama a la función para mostrar los detalles de la torre
-      this.llenarDatosMesas(this.newWidth, this.newHeight); // Actualiza la caja de anaqueles cuando cambia la torre seleccionada
-  }
-
-
-//-----------------------MESA 3 --FUNCIONES ---------------------------------------------------------------------------------------------
-    
-  // Función para llenar los arreglos de columnas y anaqueles
-  llenarDatosPalets(anchoPalet: number, largoPalet: number) {
-    this.cajaAnchoPalet = []; // Vacía el arreglo de columnas
-    this.cajaAltoPalet = []; // Vacía el arreglo de anaqueles
-
-    // Llena el arreglo de columnas con valores hasta el número de columnas especificado
-    for (let i = 0; i < anchoPalet; i++) {
-      this.cajaAnchoPalet[i] = i.toString();
-    }
-
-    // Llena el arreglo de anaqueles con valores hasta el número de anaqueles especificado
-    for (let j = 0; j <this.altoPalet; j++) {
-      this.cajaAltoPalet[j] = j.toString();
-    }
-
-    this.agregarTorre(); // Llama a la función para agregar una torre
-  }
-
-  // Función que se llama cuando cambia el valor de la columna
-  onAnchoChange(event: any) {
-    const newAnchoValue = parseInt(event); // Convertir el valor a número entero
-    console.log('Nuevo valor de columna:', newAnchoValue); // Mostrar el nuevo valor de la columna en la consola
-
-    if (newAnchoValue !== this.altoPalet) {
-      // Verificar si el valor ha cambiado
-      this.altoPalet = newAnchoValue; // Actualizar el valor de la columna
-
-      // Agregar una pequeña pausa antes de llamar a llenarDatosPalets()
-      setTimeout(() => {
-        this.llenarDatosPalets(this.altoPalet, this.anchoPalet); // Llamar a llenarDatosPalets solo si el valor ha cambiado
-      });
-    }
-  }
-
-  // Función que se llama cuando cambia el valor del anaquel
-  onLargoChange(event: any) {
-    const newLargoValue = parseInt(event); // Convertir el valor a número entero
-    console.log('Nuevo valor de anaquel:', newLargoValue); // Mostrar el nuevo valor del anaquel en la consola
-
-    if (newLargoValue !== this.anchoPalet) {
-      // Verificar si el valor ha cambiado
-      this.anchoPalet = newLargoValue; // Actualizar el valor del anaquel
-
-      // Agregar una pequeña pausa antes de llamar a llenarDatosPalets()
-      setTimeout(() => {
-        this.llenarDatosPalets(this.anchoPalet, this.altoPalet); // Llamar a llenarDatosPalets solo si el valor ha cambiado
-      });
-    }
-  }
-
-  // Función que se llama cuando cambia el valor de la torre seleccionada
-  onPaletChange(event: any) {
-    this.newPalet = event;
-    this.mostrarDetallesPalet(); // Llama a la función para mostrar los detalles de la torre
-    this.llenarDatosPalets(this.newHeightPalet, this.newWidthPalet); // Actualiza la caja de anaqueles cuando cambia la torre seleccionada
-  }
-
-  // Función para agregar una nueva torre
-  agregarPalets() {
-    if (this.newPalet !== null) {
-      const newPalet: Palets = {
-        palet: this.newPalet.toString(),
-        anchoPalet: this.newWidthPalet.toString(),
-        altoPalet: this.newHeightPalet.toString(),
-      
-      };
-
-      // Busca si ya existe una torre con el mismo nombre
-      const indicePaletExistente = this.palet.find(
-        (palet) => palet.palet === this.newPalet.toString()
-      );
-
-      // Si la torre ya existe, actualiza la cantidad de columnas y anaqueles
-      if (indicePaletExistente) {
-        indicePaletExistente.anchoPalet = this.newWidthPalet.toString();
-        indicePaletExistente.altoPalet = this.newHeightPalet.toString();
-      } else {
-        // Si la torre no existe, la agrega al arreglo
-        this.palet.push(newPalet);
-      }
-      console.log(this.palet);
-    }
-  }
-
-  // Función para mostrar los detalles de la torre seleccionada
-  mostrarDetallesPalet() {
-    if (this.newPalet) {
-      const palet = this.palet.find(
-        (palet) => palet.palet === this.newPalet.toString()
-      );
-      if (palet) {
-        // Si se encuentra la torre en el arreglo, actualiza los valores de columnas y anaqueles
-        this.newWidth = parseInt(palet.anchoPalet);
-        this.newHeight = parseInt(palet.altoPalet);
-      } else {
-        // Si no se encuentra la torre, se establecen valores predeterminados
-        this.newHeightPalet = 1;
-        this.newWidthPalet = 1;
-      }
-    }
-  }
-
-  
 }

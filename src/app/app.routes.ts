@@ -7,6 +7,7 @@ import { MesasComponent } from './mesas/mesas.component';
 import { PruebaComponent } from './prueba/prueba.component';
 import { TorresComponent } from './torres/torres.component';
 import { Prueba3Component } from './prueba-3/prueba-3.component';
+import { SuperposicionComponent } from './superposicion/superposicion.component';
 
 export const routes: Routes = [
   { path: 'bodega', component: BodegaComponent },
@@ -21,7 +22,13 @@ export const routes: Routes = [
   
   {path: 'torres', component: TorresComponent, title: 'Torres'},
 
-  {path: 'prueba', component: Prueba3Component, title: 'Prueba'}
+  {path: 'prueba', component: Prueba3Component, title: 'Prueba'},
+
+  {path: 'prueba-3', component: SuperposicionComponent, title: 'Prueba'},
+
+  {path: '**',  redirectTo: '/info', pathMatch:'full'  },
+
+
 
 
 ];

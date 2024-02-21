@@ -107,15 +107,12 @@ export class Prueba3Component {
       if (i !== currentIndex) {
         const otherMesa = this.mesas[i];
         const otherMesaPosition = this.positions[i];
-
         if (draggedMesaPosition && otherMesaPosition &&
           newLeft === otherMesaPosition.x && newTop === otherMesaPosition.y) {
           return false;
         }
-
         const otherRight = otherMesaPosition.x + otherMesa.ancho * Math.cos(rotation);
         const otherBottom = otherMesaPosition.y + otherMesa.alto * Math.sin(rotation);
-
         if (
           newLeft + margen < otherRight - margen &&
           newRight - margen > otherMesaPosition.x + margen &&
@@ -146,9 +143,7 @@ onDragEndedMesas(event: CdkDragEnd, index: number): void {
   newValue.location = { x: left, y: top };
   this.bodegaMesas[index]
   console.log('posicion',top,left,id );
-
   this.positions[index] = { x: left, y: top };
-
   console.log('positions:', this.positions); // Agregar esta línea
 }
 
@@ -198,6 +193,4 @@ recorrerArray() {
     console.log(`Mesa ${mesa.mesas}: ancho ${mesa.ancho}, alto ${mesa.alto}, posición (${mesa.position?.x}, ${mesa.position?.y})`);
   }
 }
-
-
 }

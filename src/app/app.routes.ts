@@ -26,6 +26,9 @@ export const routes: Routes = [
 
   {path: 'prueba-3', component: SuperposicionComponent, title: 'Prueba'},
 
+  {path: 'segunda', component: PruebaComponent, title: 'Segunda Prueba'},
+
+
   {path: '**',  redirectTo: '/info', pathMatch:'full'  },
 
 
